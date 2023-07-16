@@ -1,0 +1,24 @@
+Query problem: Retrieve the top 3 products with the highest total sales value, including the brand name and the category name. Sort the result by the total sales value in descending order.
+
+Solution:
+
+SELECT TOP 3
+    p.product_name,
+    b.brand_name,
+    c.category_name,
+    SUM(oi.quantity * oi.list_price) AS total_sales_value
+FROM
+    production.products AS p
+JOIN
+    production.brands AS b ON p.brand_id = b.brand_id
+JOIN
+    production.categories AS c ON p.category_id = c.category_id
+JOIN
+    sales.order_items AS oi ON p.product_id = oi.product_id
+GROUP BY
+    p.product_id,
+    p.product_name,
+    b.brand_name,
+    c.category_name
+ORDER BY
+    total_sales_value DESC;

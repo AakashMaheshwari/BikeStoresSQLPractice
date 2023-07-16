@@ -1,0 +1,21 @@
+This document provides the queries for practice for the database provided in this repository
+
+1. Retrieve the top 3 products with the highest total sales value, including the brand name and the category name. Sort the result by the total sales value in descending order.
+
+2. Find all customers who have placed at least two orders with a total order value exceeding $500. Display their names, email addresses, and the total order value for each customer.
+
+3. Calculate the average quantity of products sold per order for each staff member. Display the staff member's first name, last name, and the average quantity, and sort the result by the average quantity in descending order.
+
+4. Retrieve the names of all customers who have not placed any orders, along with their email addresses. Exclude customers who have a NULL value for the email address.
+
+5. Find the categories with the highest and lowest average list prices of products. Display the category name, average list price, and the number of products in each category.
+
+6. Retrieve all products that have been ordered at least once, but their current stock quantity is zero. Display the product name, brand name, and the current stock quantity.
+
+7. Calculate the total sales value for each month of the year. Display the month and the corresponding total sales value, and sort the result by the month in ascending order.
+
+8. Retrieve the names of all staff members who manage a store. Display their first names, last names, and the store name they manage.
+
+9. Find the products with a list price greater than the average list price of all products. Display the product name, list price, and the corresponding brand name.
+
+10.Retrieve all orders that have been placed by customers from either London or Paris. Display the order ID, order date, customer's first name, last name, and the city.

@@ -1,0 +1,21 @@
+Problem :
+Calculate the average quantity of products sold per order for each staff member. Display the staff member's first name, last name, and the average quantity, and sort the result by the average quantity in descending order.
+
+SQL Query:
+
+SELECT
+    s.first_name,
+    s.last_name,
+    AVG(oi.quantity) AS average_quantity
+FROM
+    sales.staffs AS s
+JOIN
+    sales.orders AS o ON s.staff_id = o.staff_id
+JOIN
+    sales.order_items AS oi ON o.order_id = oi.order_id
+GROUP BY
+    s.staff_id,
+    s.first_name,
+    s.last_name
+ORDER BY
+    average_quantity DESC;

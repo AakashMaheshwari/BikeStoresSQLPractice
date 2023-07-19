@@ -1,0 +1,46 @@
+Problem:
+Find the categories with the highest and lowest average list prices of products. Display the category name, average list price, and the number of products in each category.
+
+
+SQL Query:
+
+SELECT
+    c.category_name,
+    AVG(p.list_price) AS average_list_price,
+    COUNT(p.product_id) AS product_count
+FROM
+    production.categories AS c
+JOIN
+    production.products AS p ON c.category_id = p.category_id
+GROUP BY
+    c.category_id,
+    c.category_name
+HAVING
+    AVG(p.list_price) = (
+        SELECT
+            MAX(avg_list_price)
+        FROM
+            (
+                SELECT
+                    category_id,
+                    AVG(list_price) AS avg_list_price
+                FROM
+                    production.products
+                GROUP BY
+                    category_id
+            ) AS subquery
+    )
+    OR AVG(p.list_price) = (
+        SELECT
+            MIN(avg_list_price)
+        FROM
+            (
+                SELECT
+                    category_id,
+                    AVG(list_price) AS avg_list_price
+                FROM
+                    production.products
+                GROUP BY
+                    category_id
+            ) AS subquery
+    );

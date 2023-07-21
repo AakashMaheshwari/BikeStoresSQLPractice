@@ -1,0 +1,15 @@
+Problem:
+Calculate the total sales value for each month of the year. Display the month and the corresponding total sales value, and sort the result by the month in ascending order.
+
+SQL Query:
+SELECT
+    MONTH(order_date) AS order_month,
+    SUM(oi.quantity * oi.list_price) AS total_sales_value
+FROM
+    sales.orders AS o
+JOIN
+    sales.order_items AS oi ON o.order_id = oi.order_id
+GROUP BY
+    MONTH(order_date)
+ORDER BY
+    order_month;

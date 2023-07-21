@@ -1,0 +1,14 @@
+Problem
+Find the products with a list price greater than the average list price of all products. Display the product name, list price, and the corresponding brand name.
+
+SQL Query:
+SELECT
+    p.product_name,
+    p.list_price,
+    b.brand_name
+FROM
+    production.products AS p
+JOIN
+    production.brands AS b ON p.brand_id = b.brand_id
+WHERE
+    p.list_price > (SELECT AVG(list_price) FROM production.products);

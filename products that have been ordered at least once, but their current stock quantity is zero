@@ -1,0 +1,23 @@
+Problem:
+Retrieve all products that have been ordered at least once, but their current stock quantity is zero. Display the product name, brand name, and the current stock quantity.
+
+SQL Query:
+SELECT
+    p.product_name,
+    b.brand_name,
+    s.quantity AS current_stock_quantity
+FROM
+    production.products AS p
+JOIN
+    production.brands AS b ON p.brand_id = b.brand_id
+JOIN
+    production.stocks AS s ON p.product_id = s.product_id
+WHERE
+    EXISTS (
+        SELECT 1
+        FROM sales.order_items AS oi
+        JOIN sales.orders AS o ON oi.order_id = o.order_id
+        WHERE oi.product_id = p.product_id
+    )
+    AND s.quantity = 0;
+

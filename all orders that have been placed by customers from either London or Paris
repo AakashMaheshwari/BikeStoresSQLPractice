@@ -1,0 +1,16 @@
+Problem:
+Retrieve all orders that have been placed by customers from either London or Paris. Display the order ID, order date, customer's first name, last name, and the city.
+
+SQL Query:
+SELECT
+    o.order_id,
+    o.order_date,
+    c.first_name,
+    c.last_name,
+    c.city
+FROM
+    sales.orders AS o
+JOIN
+    sales.customers AS c ON o.customer_id = c.customer_id
+WHERE
+    c.city IN ('London', 'Paris');
